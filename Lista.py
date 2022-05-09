@@ -1,4 +1,4 @@
-EARTH_RADIUS = 6371
+EARTH_RADIUS = 6370
 
 DADOS = {
   "asia": {
