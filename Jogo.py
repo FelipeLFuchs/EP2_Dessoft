@@ -31,6 +31,11 @@ latitudesort=Normalizada[sorteado]["geo"]["latitude"]
 longitudesort=Normalizada[sorteado]["geo"]["longitude"]
 tentativas=0
 lista = []
+pop = 0
+area = 0
+cont = 0
+stri='0'
+valid=[]
 listdicas=[]
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
@@ -48,8 +53,30 @@ while tentativas<20:
                 distanciar = (int(distancia)+1)
             else:
                 distanciar = (int(distancia))
+            lista = (adiciona_em_ordem(chute, distanciar,lista))
+    if chute == 'dica':
+        print ('----------------------------------------')
+        if tentativas<16:
+            print ('1. Cor da bandeira  - custa 4 tentativas')
+            stri+='|1'
+        if tentativas<17: 
+            print ('2. Letra da capital - custa 3 tentativas')
+            stri+='|2'
+        if tentativas<14 and area==0:
+            print ('3. Área             - custa 6 tentativas')
+            stri+='|3'
+        if tentativas<15 and pop==0:
+            print ('4. População        - custa 5 tentativas')
+            stri+='|4'
+        if tentativas<13 and cont==0:
+            print ('5. Continente       - custa 7 tentativas')
+            stri+='|5'
+        if tentativas<19:
+            print ('0. Sem dica                             ')
+        print ('----------------------------------------')
+
+        solicita =input('Escolha a sua opção [{0}] : '.format(stri))
         
-    lista = (adiciona_em_ordem(chute, distanciar,lista))
     y = 0
     indidica=0
     print("Distâncias:")
@@ -68,5 +95,4 @@ while tentativas<20:
     print("Você tem {0} tentativa(s)".format(faltam))
 lista = []
 y=0
-
 
