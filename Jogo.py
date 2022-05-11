@@ -5,7 +5,7 @@ from Lista import EARTH_RADIUS
 from sorteando_países import sorteia_pais
 from Normalizando_base_de_dados import normaliza
 import Adicionando_em_uma_Lista_Ordenada
-import Distância_de_Haversine
+from Distância_de_Haversine import haversine
 import Esta_na_lista
 import sorteia_com_restrição
 print("=======================================")
@@ -28,5 +28,11 @@ Normalizada=(normaliza(DADOS))
 sorteado=(sorteia_pais(Normalizada))
 latitudesort=Normalizada[sorteado]["geo"]["latitude"]
 longitudesort=Normalizada[sorteado]["geo"]["longitude"]
+tentativas=0
+while tentativas<20:
+    chute=input("Qual seu palpite")
+    latitudech=Normalizada[chute]["geo"]["latitude"]
+    longitudech=Normalizada[chute]["geo"]["longitude"]
+
 
 
