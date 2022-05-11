@@ -1,5 +1,12 @@
 import math
-
+from Lista import DADOS
+from Lista import EARTH_RADIUS
+import sorteando_países
+import Normalizando_base_de_dados
+import Adicionando_em_uma_Lista_Ordenada
+import Distância_de_Haversine
+import Esta_na_lista
+import sorteia_com_restrição
 
 print("=======================================")
 print("|                                     |")
