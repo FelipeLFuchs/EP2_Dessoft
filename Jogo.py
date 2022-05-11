@@ -33,13 +33,19 @@ tentativas=0
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
     chute=chuten.lower()
-    latitudech=Normalizada[chute]["geo"]["latitude"]
-    longitudech=Normalizada[chute]["geo"]["longitude"]
-    distancia= (haversine(EARTH_RADIUS, latitudesort, longitudesort, latitudech, longitudech))
-    inteiro=int(distancia)+1
-    if (inteiro-distancia)<0.50:
-        print (int(distancia)+1)
+    l = []
+    for pais in Normalizada:
+        l.append(pais)
+    if chute not in l:
+        print("País desconhecido")
     else:
-        print(int(distancia))
+        latitudech=Normalizada[chute]["geo"]["latitude"]
+        longitudech=Normalizada[chute]["geo"]["longitude"]
+        distancia= (haversine(EARTH_RADIUS, latitudesort, longitudesort, latitudech, longitudech))
+        inteiro=int(distancia)+1
+        if (inteiro-distancia)<0.50:
+            print (int(distancia)+1)
+        else:
+            print(int(distancia))
 
 
