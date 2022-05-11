@@ -26,15 +26,20 @@ print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
 Normalizada=(normaliza(DADOS))
 #sorteado=(sorteia_pais(Normalizada))
-sorteado='portugal'
+sorteado='bahamas'
 latitudesort=Normalizada[sorteado]["geo"]["latitude"]
 longitudesort=Normalizada[sorteado]["geo"]["longitude"]
 tentativas=0
 while tentativas<20:
-    chute=input("Qual seu palpite")
+    chuten=input("Qual seu palpite  ")
+    chute=chuten.lower()
     latitudech=Normalizada[chute]["geo"]["latitude"]
     longitudech=Normalizada[chute]["geo"]["longitude"]
     distancia= (haversine(EARTH_RADIUS, latitudesort, longitudesort, latitudech, longitudech))
-    print (int(distancia))
+    inteiro=int(distancia)+1
+    if (inteiro-distancia)<0.50:
+        print (int(distancia)+1)
+    else:
+        print(int(distancia))
 
 
