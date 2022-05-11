@@ -24,10 +24,6 @@ print("Inventário   ----   exibe sua posição")
 print("                                       ")
 print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
-Normalizada=(normaliza(DADOS))
-sorteado=(sorteia_pais(Normalizada))
-latsort=sorteado["geo"]["latitude"]
-longsort=sorteado["longetude"]
-tentativas=0
-print(sorteado)
+
+
 
