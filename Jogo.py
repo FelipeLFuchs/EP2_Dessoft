@@ -24,6 +24,9 @@ print("Inventário   ----   exibe sua posição")
 print("                                       ")
 print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
-
+Normalizada=(normaliza(DADOS))
+sorteado=(sorteia_pais(Normalizada))
+latitudesort=Normalizada[sorteado]["geo"]["latitude"]
+longitudesort=Normalizada[sorteado]["geo"]["longitude"]
 
 
