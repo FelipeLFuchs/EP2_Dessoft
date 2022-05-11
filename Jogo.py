@@ -35,12 +35,13 @@ pop = 0
 area = 0
 cont = 0
 stri='0'
-valid=[]
+valid=["3","4","5"]
 listdicas=[]
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
     chute=chuten.lower()
     l = []
+    
     for pais in Normalizada:
         l.append(pais)
     if chute in l:
@@ -76,7 +77,18 @@ while tentativas<20:
         print ('----------------------------------------')
 
         solicita =input('Escolha a sua opção [{0}] : '.format(stri))
-        
+        if solicita=="3" or "4" or "5":
+            if solicita not in valid:
+                print("Opção Inválida")
+            if solicita in valid:
+                valid.remove(solicita)
+                if solicita=="3" or tentativas>14:
+                    area+=1
+                if solicita=="4" or tentativas>15:
+                    pop+=1
+                if solicita=="5" or tentativas>13:
+                    cont+=1
+        stri="0"
     y = 0
     indidica=0
     print("Distâncias:")
