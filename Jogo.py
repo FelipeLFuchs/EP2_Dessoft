@@ -38,22 +38,22 @@ stri='0'
 valid=["3","4","5"]
 listdicas=[]
 Ordem_alfabética=""
+l = []
+for pais in Normalizada:
+    l.append(pais)
+Ordem=(sorted(l))
+
+for letras in Ordem:
+    Ordem_alfabética+=letras
+    if letras != "zimbabue":
+        Ordem_alfabética+=", "
+    if letras == "zimbabue":
+        Ordem_alfabética+=". " 
+        
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
     chute=chuten.lower()
-    l = []
     
-    for pais in Normalizada:
-        l.append(pais)
-    Ordem=(sorted(l))
-
-    for letras in Ordem:
-        Ordem_alfabética+=letras
-        if letras != "zimbabue":
-            Ordem_alfabética+=", "
-        if letras == "zimbabue":
-            Ordem_alfabética+=". " 
-
     if chute=="lista" or chute=="lista":
         print(Ordem_alfabética)
     if chute in l:
