@@ -68,6 +68,18 @@ while tentativas<20:
                 distanciar = (int(distancia))
             lista = (adiciona_em_ordem(chute, distanciar,lista))
     if chute == 'dica':
+        if tentativas >= 14:
+            if area==0:
+                valid.remove('3')
+            area += 1
+        if tentativas >= 15:
+            if pop==0:
+                valid.remove('4')
+            pop += 1
+        if tentativas >= 13:
+            if cont==0:
+                valid.remove('5')
+            cont += 1
         print ('----------------------------------------')
         if tentativas<16:
             print ('1. Cor da bandeira  - custa 4 tentativas')
@@ -87,7 +99,7 @@ while tentativas<20:
         if tentativas<19:
             print ('0. Sem dica                             ')
         print ('----------------------------------------')
-
+        
         solicita =input('Escolha a sua opção [{0}] : '.format(stri))
         if solicita=="3"or solicita=="4" or solicita=="5":
             if solicita not in valid:
@@ -109,7 +121,7 @@ while tentativas<20:
     print("Distâncias:")
     print("")
     while y < len(lista):
-        print('{0} -> {1}'.format(lista[y][1],lista[y][0]))
+        print('{0} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
         y +=1
     tentativas+=1
     print("")
@@ -122,6 +134,6 @@ while tentativas<20:
     print("Você tem {0} tentativa(s)".format(faltam))
 lista = []
 y=0
-if tentativas==20:
-    print("Que pena que não acertou, o país escolhido era {0}".format(sorteado))
+if tentativas>=20:
+    print("Dormiu nas aulas de geografia? O país escolhido era {0}".format(sorteado))
 
