@@ -26,11 +26,13 @@ print("                                       ")
 print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
 Normalizada=(normaliza(DADOS))
-sorteado=(sorteia_pais(Normalizada))
+#sorteado=(sorteia_pais(Normalizada))
+sorteado="japao"
 latitudesort=Normalizada[sorteado]["geo"]["latitude"]
 longitudesort=Normalizada[sorteado]["geo"]["longitude"]
 tentativas=0
 lista = []
+acerto=0
 pop = 0
 area = 0
 cont = 0
@@ -48,13 +50,12 @@ for letras in Ordem:
     if letras != "zimbabue":
         Ordem_alfabética+=", "
     if letras == "zimbabue":
-        Ordem_alfabética+=". " 
-        
+        Ordem_alfabética+=". "       
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
     chute=chuten.lower()
     
-    if chute=="lista" or chute=="lista":
+    if chute=="lista" or chute=="Lista":
         print(Ordem_alfabética)
     if chute in l:
         if chute != sorteado:
@@ -118,22 +119,28 @@ while tentativas<20:
         stri="0"
     y = 0
     indidica=0
-    print("Distâncias:")
-    print("")
-    while y < len(lista):
-        print('{0} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
-        y +=1
-    tentativas+=1
-    print("")
-    print("Dicas:")
-    while indidica<len(listdicas):
-        print(listdicas[indidica])
-        indidica+=1
-    print("")
-    faltam=20-tentativas
-    print("Você tem {0} tentativa(s)".format(faltam))
+    if chute!= sorteado:
+        print("Distâncias:")
+        print("")
+        while y < len(lista):
+            print('{0} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
+            y +=1
+        tentativas+=1
+        print("")
+        print("Dicas:")
+        while indidica<len(listdicas):
+            print(listdicas[indidica])
+            indidica+=1
+        print("")
+        faltam=20-tentativas
+        print("Você tem {0} tentativa(s)".format(faltam))
+    if chute == sorteado:
+        print("***Parabéns meu consagrado, parece que temos um Sherlock Holmes aqui!!!***")
+        print("você acertou após {0} tentativas".format(tentativas))
+        tentativas=20
+        acerto+=1
 lista = []
 y=0
-if tentativas>=20:
+if tentativas>=20 and acerto ==0:
     print("Dormiu nas aulas de geografia? O país escolhido era {0}".format(sorteado))
 
