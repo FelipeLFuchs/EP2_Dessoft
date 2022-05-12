@@ -25,8 +25,7 @@ print("                                       ")
 print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
 Normalizada=(normaliza(DADOS))
-#sorteado=(sorteia_pais(Normalizada))
-sorteado='bahamas'
+sorteado=(sorteia_pais(Normalizada))
 latitudesort=Normalizada[sorteado]["geo"]["latitude"]
 longitudesort=Normalizada[sorteado]["geo"]["longitude"]
 tentativas=0
@@ -107,4 +106,6 @@ while tentativas<20:
     print("Você tem {0} tentativa(s)".format(faltam))
 lista = []
 y=0
+if tentativas==20:
+    print("Que pena que não acertou, o país escolhido era {0}".format(sorteado))
 
