@@ -21,6 +21,7 @@ print("Comandos Básicos:                      ")
 print("dica         ----   entra no mercado de dicas")
 print("Desisto      ----   desiste da rodada")
 print("Inventário   ----   exibe sua posição")
+print("Lista   ----   exibe todos os países possíveis")
 print("                                       ")
 print("                                       ")
 print("Um país foi escolhido, tente adivinhar qual é!!")
@@ -36,6 +37,7 @@ cont = 0
 stri='0'
 valid=["3","4","5"]
 listdicas=[]
+Ordem_alfabética=""
 while tentativas<20:
     chuten=input("Qual seu palpite  ")
     chute=chuten.lower()
@@ -43,6 +45,17 @@ while tentativas<20:
     
     for pais in Normalizada:
         l.append(pais)
+    Ordem=(sorted(l))
+
+    for letras in Ordem:
+        Ordem_alfabética+=letras
+        if letras != "zimbabue":
+            Ordem_alfabética+=", "
+        if letras == "zimbabue":
+            Ordem_alfabética+=". " 
+
+    if chute=="lista" or chute=="lista":
+        print(Ordem_alfabética)
     if chute in l:
         if chute != sorteado:
             latitudech=Normalizada[chute]["geo"]["latitude"]
@@ -76,17 +89,20 @@ while tentativas<20:
         print ('----------------------------------------')
 
         solicita =input('Escolha a sua opção [{0}] : '.format(stri))
-        if solicita=="3" or "4" or "5":
+        if solicita=="3"or solicita=="4" or solicita=="5":
             if solicita not in valid:
                 print("Opção Inválida")
             if solicita in valid:
                 valid.remove(solicita)
-                if solicita=="3" or tentativas>14:
+                if solicita=="3":
                     area+=1
-                if solicita=="4" or tentativas>15:
+                    tentativas+=6
+                if solicita=="4":
                     pop+=1
-                if solicita=="5" or tentativas>13:
+                    tentativas+=5
+                if solicita=="5":
                     cont+=1
+                    tentativas+=7
         stri="0"
     y = 0
     indidica=0
