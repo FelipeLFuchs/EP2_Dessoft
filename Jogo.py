@@ -23,8 +23,8 @@ print("Desisto      ----   desiste da rodada")
 print("Inventário   ----   exibe sua posição")
 print("Lista   ----   exibe todos os países possíveis")
 final=0
-while final==0:
-    tentativas=0
+while final==0:       #iniciando o jogo
+    tentativas=0      #parâmetros
     faltam=0
     print("                                       ")
     print("                                       ")
@@ -44,7 +44,7 @@ while final==0:
     listdicas=[]
     Ordem_alfabética=""
     l = []
-    for pais in Normalizada:
+    for pais in Normalizada:         #lista de países
         l.append(pais)
     Ordem=(sorted(l))
 
@@ -53,14 +53,20 @@ while final==0:
         if letras != "zimbabue":
             Ordem_alfabética+=", "
         if letras == "zimbabue":
-            Ordem_alfabética+=". "     
-    while tentativas<20:
+            Ordem_alfabética+=". "  
+
+
+
+    while tentativas<20:           #TENTATIVAS
         chuten=input("Qual seu palpite  ")
         chute=chuten.lower()
         
-        if chute=="lista" or chute=="Lista":
+        if chute=="lista" or chute=="Lista":      #printar lista
             print(Ordem_alfabética)
-        if chute in l:
+
+
+
+        if chute in l:                            #CHUTA EM PAÍSES
             if chute != sorteado:
                 latitudech=Normalizada[chute]["geo"]["latitude"]
                 longitudech=Normalizada[chute]["geo"]["longitude"]
@@ -71,7 +77,9 @@ while final==0:
                 else:
                     distanciar = (int(distancia))
                 lista = (adiciona_em_ordem(chute, distanciar,lista))
-        if chute == 'dica':
+
+
+        if chute == 'dica':          #DICA
             if tentativas >= 14:
                 if area==0:
                     valid.remove('3')
@@ -120,13 +128,19 @@ while final==0:
                         cont+=1
                         tentativas+=7
             stri="0"
-        y = 0
-        indidica=0
-        if chute!= sorteado:
+
+
+
+        y=0
+        if chute!= sorteado:          #DISTÂNCIA E TALS
+            indidica=0
             print("Distâncias:")
             print("")
             while y < len(lista):
-                print('{0} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
+                if lista[y][1] <1000:
+                    print('{0} Km -> {1}'.format(lista[y][1],lista[y][0]))
+                if lista[y][1] >1000:
+                    print('{0:.3f} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
                 y +=1
             tentativas+=1
             print("")
@@ -137,7 +151,10 @@ while final==0:
             print("")
             faltam=20-tentativas
             print("Você tem {0} tentativa(s)".format(faltam))
-        if chute == sorteado:
+
+
+
+        if chute == sorteado:          #ACERTOU
             tentativas+=1
             print("***Parabéns meu consagrado, parece que temos um Sherlock Holmes aqui!!!***")
             print("você acertou após {0} tentativas".format(tentativas))
@@ -149,7 +166,10 @@ while final==0:
             else:
                 final=0
                 tentativas=20
-        if tentativas>=20 and acerto ==0:
+
+
+
+        if tentativas>=20 and acerto ==0:               #ERROU
             print("Dormiu nas aulas de geografia? O país escolhido era {0}".format(sorteado))
             b=input("Quer jogar novamente?[s|n]")
             if b=="n":
