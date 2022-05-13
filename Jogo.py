@@ -8,6 +8,16 @@ from Adicionando_em_uma_Lista_Ordenada import adiciona_em_ordem
 from Distância_de_Haversine import haversine
 import Esta_na_lista
 import sorteia_com_restrição
+class bcolors:    
+    RED = "\033[1;91m" 
+    BLUE = "\033[1;34m" 
+    CYAN = "\033[1;36m" 
+    GREEN = "\033[1;92m"
+    GRAY = "\033[1;49m"
+    YELLOW = "\033[1;33m"
+    MAGENTA = "\033[1;95m"
+    RESET="\033[0m"
+
 print("=======================================")
 print("|                                     |")
 print("|    Bem vindo ao jogo dos países     |")
@@ -132,15 +142,26 @@ while final==0:       #iniciando o jogo
 
 
         y=0
-        if chute!= sorteado:          #DISTÂNCIA E TALS
+        if chute!= sorteado:          #DISTÂNCIA E CORES
+            bcolors.RED+'ola'+bcolors.RESET
             indidica=0
             print("Distâncias:")
             print("")
             while y < len(lista):
-                if lista[y][1] <1000:
-                    print('{0} Km -> {1}'.format(lista[y][1],lista[y][0]))
-                if lista[y][1] >1000:
-                    print('{0:.3f} Km -> {1}'.format(lista[y][1]/1000,lista[y][0]))
+                
+                if lista[y][1] <=500:
+                    print((bcolors.CYAN+'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
+                if lista[y][1] > 500 and lista[y][1] <= 1000:
+                    print((bcolors.GREEN +'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
+                if lista[y][1] > 1000 and lista[y][1] <= 2000:
+                    print((bcolors.YELLOW +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                if lista[y][1] > 2000 and lista[y][1] <= 5000:
+                    print((bcolors.MAGENTA +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                if lista[y][1] > 5000 and lista[y][1] <= 10000:
+                    print((bcolors.RED +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                if lista[y][1] > 10000:
+                    print((bcolors.GRAY +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                
                 y +=1
             tentativas+=1
             print("")
@@ -179,4 +200,4 @@ while final==0:       #iniciando o jogo
                 tentativas=0
 final=0
     
-
+#RED = "033 [1;31m" BLUE = "033 [1;34m" CYAN = "033 [1;36m" GREEN = "033 [0;32m" RESET = "033
