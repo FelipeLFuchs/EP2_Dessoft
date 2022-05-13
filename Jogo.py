@@ -40,8 +40,7 @@ while final==0:       #iniciando o jogo
     faltam=20
     print("                                       ")
     print("                                       ")
-    print("Um país foi escolhido, tente adivinhar qual é!!")  
-    print("Você tem {0} tentativa(s)".format(faltam))
+    print("Um país foi escolhido, tente adivinhar qual é!!") 
     Normalizada=(normaliza(DADOS))
     #sorteado=(sorteia_pais(Normalizada))
     sorteado="italia"
@@ -101,7 +100,10 @@ while final==0:       #iniciando o jogo
 
     while tentativas<20:           #TENTATIVAS
         print("")
+        print("Você tem {0} tentativa(s)".format(faltam))
+        print("")      
         chuten=input("Qual seu palpite  ")
+        print("")   
         chute=chuten.lower()
         
         if chute=="lista" or chute=="Lista":      #printar lista
@@ -124,8 +126,15 @@ while final==0:       #iniciando o jogo
 
             y=0                                                     #DISTÂNCIA E CORES
             indidica=0
+            print("")   
+            print("")   
+            print("")   
+            print("")   
+            print("")   
             print("Distâncias:")
             print("")
+            print("")
+
             while y < len(lista):
                 if lista [y][0] =="brasil":                             #Brasillllllll
                     if lista[y][1] <=500:
@@ -158,15 +167,8 @@ while final==0:       #iniciando o jogo
                     
                 y +=1
 
-            tentativas+=1
-            print("")
-            print("Dicas:")
-            while indidica<len(listdicas):
-                print(listdicas[indidica])
-                indidica+=1
-            print("")
-            faltam=20-tentativas
-            print("Você tem {0} tentativa(s)".format(faltam))        
+                tentativas+=1
+                faltam=20-tentativas     
             
 
 
@@ -216,6 +218,7 @@ while final==0:       #iniciando o jogo
 
 
                 if solicita=="1":                       #cor da bandeira
+                    tentativas+=4
                     escolhido1=random.choice(cor_band)
                     if band==numero-1:
                         corzinha+=", "
@@ -241,6 +244,7 @@ while final==0:       #iniciando o jogo
 
 
                 if solicita=="2":                            #capital
+                    tentativas+=3
                     escolhido=random.choice(letras)
                     if cap==len(Normalizada[sorteado]['capital'])-1:
                         letrinha+=", "
@@ -268,7 +272,7 @@ while final==0:       #iniciando o jogo
                 if solicita=="4":
                     pop+=1
                     tentativas+=5
-                    populacaozinha=(Normalizada[sorteado]['populacao'])
+                    populacaozinha=str(Normalizada[sorteado]['populacao'])
                     if pop==1:
                         valid.remove(solicita)
                 if solicita=="5":
@@ -278,6 +282,21 @@ while final==0:       #iniciando o jogo
                     if cont==1:
                         valid.remove(solicita)
             stri="0"
+            if pop > 0 or area > 0 or cont > 0 or band > 0 or cap > 0:
+                print("")
+                print("Dicas:")
+                print("")
+                if band>0:
+                    print("Cores da bandeira: {0}".format(corzinha))
+                if cap>0:
+                    print("Letras da capital: {0}".format(letrinha))
+                if area>0:
+                    print("Área do país:{0} km2".format(areazinha))
+                if pop>0:
+                    print("População do país:{0} habitantes".format(populacaozinha))
+                if cont>0:
+                    print("Área do país:{0}".format(continentizinho))
+            faltam=20-tentativas 
 
 
 
