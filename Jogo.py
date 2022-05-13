@@ -42,8 +42,7 @@ while final==0:       #iniciando o jogo
     print("                                       ")
     print("Um país foi escolhido, tente adivinhar qual é!!") 
     Normalizada=(normaliza(DADOS))
-    #sorteado=(sorteia_pais(Normalizada))
-    sorteado="italia"
+    sorteado=(sorteia_pais(Normalizada))
     latitudesort=Normalizada[sorteado]["geo"]["latitude"]
     longitudesort=Normalizada[sorteado]["geo"]["longitude"]
     lista = []
@@ -64,6 +63,8 @@ while final==0:       #iniciando o jogo
     populacaozinha=""
     continentizinho=""
     numero=0
+    repetidos=[]
+    chute=0
 
     letras=[]                          #função capital
     capital=Normalizada[sorteado]['capital']
@@ -101,11 +102,18 @@ while final==0:       #iniciando o jogo
     while tentativas<20:           #TENTATIVAS
         print("")
         print("Você tem {0} tentativa(s)".format(faltam))
-        print("")      
+        print("")
         chuten=input("Qual seu palpite  ")
         print("")   
         chute=chuten.lower()
-        
+        if chute in repetidos:
+            print("")
+            print("")
+            print("")
+            print("")
+            print("País já foi escolhido antes")
+            tentativas+=-1
+                 
         if chute=="lista" or chute=="Lista":      #printar lista
             print(Ordem_alfabética)
 
@@ -121,11 +129,17 @@ while final==0:       #iniciando o jogo
             else:
                 distanciar = (int(distancia))
             lista = (adiciona_em_ordem(chute, distanciar,lista))
+            repetidos.append(chute) 
 
 
 
             y=0                                                     #DISTÂNCIA E CORES
             indidica=0
+            print("")   
+            print("")   
+            print("")   
+            print("")   
+            print("")   
             print("")   
             print("")   
             print("")   
@@ -167,8 +181,9 @@ while final==0:       #iniciando o jogo
                     
                 y +=1
 
-                tentativas+=1
-                faltam=20-tentativas     
+            tentativas+=1
+            faltam=20-tentativas
+         
             
 
 
@@ -296,7 +311,7 @@ while final==0:       #iniciando o jogo
                     print("População do país:{0} habitantes".format(populacaozinha))
                 if cont>0:
                     print("Área do país:{0}".format(continentizinho))
-            faltam=20-tentativas 
+                faltam=20-tentativas 
 
 
 
