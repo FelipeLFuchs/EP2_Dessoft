@@ -1,4 +1,5 @@
 import math
+import random
 import Lista
 from Lista import DADOS
 from Lista import EARTH_RADIUS
@@ -42,7 +43,8 @@ while final==0:       #iniciando o jogo
     print("Um país foi escolhido, tente adivinhar qual é!!")  
     print("Você tem {0} tentativa(s)".format(faltam))
     Normalizada=(normaliza(DADOS))
-    sorteado=(sorteia_pais(Normalizada))
+    #sorteado=(sorteia_pais(Normalizada))
+    sorteado="italia"
     latitudesort=Normalizada[sorteado]["geo"]["latitude"]
     longitudesort=Normalizada[sorteado]["geo"]["longitude"]
     lista = []
@@ -50,20 +52,49 @@ while final==0:       #iniciando o jogo
     pop = 0
     area = 0
     cont = 0
+    band=0
+    cap=0
     stri='0'
-    valid=["3","4","5"]
+    valid=['0','1',"2","3","4","5"]
     listdicas=[]
     Ordem_alfabética=""
     l = []
+    letrinha=""
+    corzinha=""
+    areazinha=""
+    populacaozinha=""
+    continentizinho=""
+    numero=0
+
+    letras=[]                          #função capital
+    capital=Normalizada[sorteado]['capital']
+    for caracte in capital:
+        letras.append(caracte)
+
+
+    cor_band = []                        #função bandeira                  
+    bandeira = Normalizada[sorteado]['bandeira']
+    for cores,valores in bandeira.items():
+            if valores > 0 and cores != 'outras':
+                i=0
+                while i< valores:
+                    cor_band.append(cores)
+                    i+=1
+                numero+=1
+    
+        
+
+
+
     for pais in Normalizada:         #lista de países
         l.append(pais)
     Ordem=(sorted(l))
 
-    for letras in Ordem:
-        Ordem_alfabética+=letras
-        if letras != "zimbabue":
+    for letrass in Ordem:
+        Ordem_alfabética+=letrass
+        if letrass != "zimbabue":
             Ordem_alfabética+=", "
-        if letras == "zimbabue":
+        if letrass == "zimbabue":
             Ordem_alfabética+=". "  
 
 
@@ -111,7 +142,7 @@ while final==0:       #iniciando o jogo
                         print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     
                     
-                if lista [y][0]!= "brasil":
+                if lista [y][0]!= "brasil":                            #Não Brasillllllll
                     if lista[y][1] <=500:
                         print((bcolors.CYAN+'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
                     if lista[y][1] > 500 and lista[y][1] <= 1000:
@@ -144,20 +175,23 @@ while final==0:       #iniciando o jogo
             if tentativas >= 14:
                 if area==0:
                     valid.remove('3')
-                area += 1
             if tentativas >= 15:
                 if pop==0:
                     valid.remove('4')
-                pop += 1
             if tentativas >= 13:
                 if cont==0:
                     valid.remove('5')
-                cont += 1
+            if tentativas>= 16:
+                if band<numero:
+                    valid.remove("1")
+            if tentativas>= 17:
+                if band<len(Normalizada[sorteado]['capital']):
+                    valid.remove("2")
             print ('----------------------------------------')
-            if tentativas<16:
+            if tentativas<16 and band < numero:
                 print ('1. Cor da bandeira  - custa 4 tentativas')
                 stri+='|1'
-            if tentativas<17: 
+            if tentativas<17 and cap < len(Normalizada[sorteado]['capital']): 
                 print ('2. Letra da capital - custa 3 tentativas')
                 stri+='|2'
             if tentativas<14 and area==0:
@@ -173,21 +207,76 @@ while final==0:       #iniciando o jogo
                 print ('0. Sem dica                             ')
             print ('----------------------------------------')
             
-            solicita =input('Escolha a sua opção [{0}] : '.format(stri))
-            if solicita=="3"or solicita=="4" or solicita=="5":
+            solicita=0
+            while solicita not in valid:
+                solicita =input('Escolha a sua opção [{0}] : '.format(stri))
                 if solicita not in valid:
-                    print("Opção Inválida")
-                if solicita in valid:
-                    valid.remove(solicita)
-                    if solicita=="3":
-                        area+=1
-                        tentativas+=6
-                    if solicita=="4":
-                        pop+=1
-                        tentativas+=5
-                    if solicita=="5":
-                        cont+=1
-                        tentativas+=7
+                    print("Opção inválida")
+            if solicita in valid:
+
+
+                if solicita=="1":                       #cor da bandeira
+                    escolhido1=random.choice(cor_band)
+                    if band==numero-1:
+                        corzinha+=", "
+                        corzinha+=escolhido1
+                        corzinha+="."
+                    else:
+                        if band==0:
+                            corzinha+=escolhido1
+                        if band>0:
+                            corzinha+=", "
+                            corzinha+=escolhido1
+                    band+=1
+                    i=0
+                    while i<len(cor_band):
+                        if escolhido1 == cor_band[i]:
+                            cor_band.remove(cor_band[i])
+                            i+=-1
+                        i+=1
+                    
+                    if band==numero: 
+                        valid.remove(solicita)
+
+
+
+                if solicita=="2":                            #capital
+                    escolhido=random.choice(letras)
+                    if cap==len(Normalizada[sorteado]['capital'])-1:
+                        letrinha+=", "
+                        letrinha+=escolhido
+                        letrinha+="."
+                    else:
+                        if cap==0:
+                            letrinha+=escolhido 
+                        if cap>0 :
+                            letrinha+=", "
+                            letrinha+=escolhido
+                    letras.remove(escolhido)
+                    cap+=1
+                    print(letrinha)
+                    if cap==len(Normalizada[sorteado]['capital']): 
+                        valid.remove(solicita)
+
+
+                if solicita=="3":                             #outras dicas
+                    area+=1
+                    tentativas+=6
+                    areazinha=(Normalizada[sorteado]['area'])
+                    if area==1:
+                        valid.remove(solicita)
+                if solicita=="4":
+                    pop+=1
+                    tentativas+=5
+                    populacaozinha=(Normalizada[sorteado]['populacao'])
+                    if pop==1:
+                        valid.remove(solicita)
+                if solicita=="5":
+                    cont+=1
+                    tentativas+=7
+                    continentizinho==(Normalizada[sorteado]['continente'])
+                    if cont==1:
+                        valid.remove(solicita)
             stri="0"
 
 
