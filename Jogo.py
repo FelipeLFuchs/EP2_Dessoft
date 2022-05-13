@@ -96,6 +96,21 @@ while final==0:       #iniciando o jogo
             print("Distâncias:")
             print("")
             while y < len(lista):
+                if lista [y][0] =="brasil":                             #Brasillllllll
+                    if lista[y][1] <=500:
+                        print((bcolors.CYAN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 500 and lista[y][1] <= 1000:
+                        print((bcolors.GREEN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 1000 and lista[y][1] <= 2000:
+                        print((bcolors.YELLOW+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 2000 and lista[y][1] <= 5000:
+                        print((bcolors.MAGENTA+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 5000 and lista[y][1] <= 10000:
+                        print((bcolors.RED+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 10000:
+                        print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    
+                    
                 if lista [y][0]!= "brasil":
                     if lista[y][1] <=500:
                         print((bcolors.CYAN+'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
@@ -110,22 +125,8 @@ while final==0:       #iniciando o jogo
                     if lista[y][1] > 10000:
                         print((bcolors.GRAY +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
                     
-                    y +=1
-                if lista [y][0]== "brasil":                             #Brasillllllll
-                    if lista[y][1] <=500:
-                        print((bcolors.CYAN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    if lista[y][1] > 500 and lista[y][1] <= 1000:
-                        print((bcolors.GREEN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    if lista[y][1] > 1000 and lista[y][1] <= 2000:
-                        print((bcolors.YELLOW+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    if lista[y][1] > 2000 and lista[y][1] <= 5000:
-                        print((bcolors.MAGENTA+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    if lista[y][1] > 5000 and lista[y][1] <= 10000:
-                        print((bcolors.RED+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    if lista[y][1] > 10000:
-                        print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
-                    
-                    y +=1
+                y +=1
+
             tentativas+=1
             print("")
             print("Dicas:")
