@@ -220,9 +220,12 @@ while final==0:       #iniciando o jogo
                 print("")
                 print("Não aguentou a pressão??? O país era {0}".format(sorteado))
                 novamente=input("Quer jogar novamente?[s|n]")
-                print("")
-                print("Até a próxima!!!!")
-                final+=1
+                if novamente=="s":
+                    tentativa=20
+                if novamente=="n":
+                    print("")
+                    print("Até a próxima!!!!")
+                    final+=1
             if desistir=="n":
                 print("")
                 print("Você ainda tem {0} tentativa(s)".format(faltam))
