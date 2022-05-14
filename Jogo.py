@@ -65,7 +65,6 @@ while final==0:       #iniciando o jogo
     numero=0
     repetidos=[]
     chute=0
-
     letras=[]                          #função capital
     capital=Normalizada[sorteado]['capital']
     for caracte in capital:
@@ -183,7 +182,7 @@ while final==0:       #iniciando o jogo
 
             tentativas+=1
             faltam=20-tentativas
-         
+        
             
 
 
@@ -293,7 +292,7 @@ while final==0:       #iniciando o jogo
                 if solicita=="5":
                     cont+=1
                     tentativas+=7
-                    continentizinho==(Normalizada[sorteado]["continente"])
+                    continentizinho=(Normalizada[sorteado]['continente'])
                     if cont==1:
                         valid.remove(solicita)
             stri="0"
@@ -306,11 +305,11 @@ while final==0:       #iniciando o jogo
                 if cap>0:
                     print("Letras da capital: {0}".format(letrinha))
                 if area>0:
-                    print("Área do país:{0} km2".format(areazinha))
+                    print("Área do país: {0} km2".format(areazinha))
                 if pop>0:
-                    print("População do país:{0} habitantes".format(populacaozinha))
+                    print("População do país: {0} habitantes".format(populacaozinha))
                 if cont>0:
-                    print("Continente:{0}".format(continentizinho))
+                    print("Continente: {0}".format(continentizinho))
                 faltam=20-tentativas 
 
 
