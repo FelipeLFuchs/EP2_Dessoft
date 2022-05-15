@@ -1,5 +1,8 @@
+from cgitb import reset
 import math
 import random
+
+from sympy import N
 import Lista
 from Lista import DADOS
 from Lista import EARTH_RADIUS
@@ -65,7 +68,11 @@ while final==0:       #iniciando o jogo
     numero=0
     repetidos=[]
     chute=0
-    letras=[]                          #função capital
+    letras=[]  
+    ponto=0 
+    sss=""   
+    ssss=""
+    ponto1=0                    #função capital
     capital=Normalizada[sorteado]['capital']
     for caracte in capital:
         letras.append(caracte)
@@ -100,16 +107,21 @@ while final==0:       #iniciando o jogo
 
     while tentativas<20:           #TENTATIVAS
         print("")
-        print("Você tem {0} tentativa(s)".format(faltam))
-        print("")
-        chuten=input("Qual seu palpite  ")
+        print("------------------------------------------------------------------------------------------------------------------------------")
+        if tentativas<10:
+            print(("Você tem"+bcolors.GREEN+" {0} "+bcolors.RESET+"tentativa(s)").format(faltam))
+            print("")
+        if tentativas>=10 and tentativas<15:
+            print(("Você tem"+bcolors.YELLOW+" {0} "+bcolors.RESET+"tentativa(s)").format(faltam))
+            print("")
+        if tentativas>=15:
+            print(("Você tem"+bcolors.RED+" {0} "+bcolors.RESET+"tentativa(s)").format(faltam))
+            print("")
+        chuten=input("País=  ")
         print("")   
         chute=chuten.lower()
         if chute in repetidos:
-            print("")
-            print("")
-            print("")
-            print("")
+            print("","\n","","\n","","\n","","\n")
             print("País já foi escolhido antes")
             tentativas+=-1
                  
@@ -133,35 +145,24 @@ while final==0:       #iniciando o jogo
 
 
             y=0                                                     #DISTÂNCIA E CORES
-            indidica=0
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
-            print("")   
+            print("","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n")
             print("Distâncias:")
-            print("")
-            print("")
+            print("","\n","","\n")
 
             while y < len(lista):
                 if lista [y][0] =="brasil":                             #Brasillllllll
                     if lista[y][1] <=500:
-                        print((bcolors.CYAN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.CYAN+"{0} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     if lista[y][1] > 500 and lista[y][1] <= 1000:
-                        print((bcolors.GREEN+"{0} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.GREEN+"{0} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     if lista[y][1] > 1000 and lista[y][1] <= 2000:
-                        print((bcolors.YELLOW+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.YELLOW+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     if lista[y][1] > 2000 and lista[y][1] <= 5000:
-                        print((bcolors.MAGENTA+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.MAGENTA+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     if lista[y][1] > 5000 and lista[y][1] <= 10000:
-                        print((bcolors.RED+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.RED+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     if lista[y][1] > 10000:
-                        print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+"{1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                        print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
                     
                     
                 if lista [y][0]!= "brasil":                            #Não Brasillllllll
@@ -203,6 +204,7 @@ while final==0:       #iniciando o jogo
             if tentativas>= 17:
                 if band<len(Normalizada[sorteado]['capital']):
                     valid.remove("2")
+            print("","\n","","\n","","\n","","\n","","\n","","\n","","\n","","\n")
             print ('----------------------------------------')
             if tentativas<16 and band < numero:
                 print ('1. Cor da bandeira  - custa 4 tentativas')
@@ -225,6 +227,7 @@ while final==0:       #iniciando o jogo
             
             solicita=0
             while solicita not in valid:
+                print("","\n","","\n","","\n")
                 solicita =input('Escolha a sua opção [{0}] : '.format(stri))
                 if solicita not in valid:
                     print("Opção inválida")
@@ -277,27 +280,53 @@ while final==0:       #iniciando o jogo
                         valid.remove(solicita)
 
 
-                if solicita=="3":                             #outras dicas
+                if solicita=="3":                             #area
                     area+=1
                     tentativas+=6
-                    areazinha=(Normalizada[sorteado]['area'])
+                    are=str(Normalizada[sorteado]['area'])
+                    conta1=len(are)-1
+                    while conta1>-1:
+                        ponto1+=1
+                        if ponto1==4:
+                            ponto1=0
+                            ssss+="."
+                        else:
+                            ssss+=are[conta1]
+                            conta1+=-1
+                    areazinha=ssss[::-1]
                     if area==1:
                         valid.remove(solicita)
-                if solicita=="4":
+
+
+
+                if solicita=="4":                             #população
                     pop+=1
                     tentativas+=5
-                    populacaozinha=str(Normalizada[sorteado]['populacao'])
+                    popu=str(Normalizada[sorteado]['populacao'])
+                    conta=len(popu)-1
+                    while conta>-1:
+                        ponto+=1
+                        if ponto==4:
+                            ponto=0
+                            sss+="."
+                        else:
+                            sss+=popu[conta]
+                            conta+=-1
+                        populacaozinha=sss[::-1]
                     if pop==1:
                         valid.remove(solicita)
-                if solicita=="5":
+
+
+                if solicita=="5":                           #continente
                     cont+=1
                     tentativas+=7
                     continentizinho=(Normalizada[sorteado]['continente'])
                     if cont==1:
                         valid.remove(solicita)
             stri="0"
-            if pop > 0 or area > 0 or cont > 0 or band > 0 or cap > 0:
-                print("")
+        if chute!= "desisto" and chute != "inventário":
+            if pop > 0 or area > 0 or cont > 0 or band > 0 or cap > 0:      #printando dicas e lista de países chutados
+                print("","\n","","\n","","\n","","\n","","\n")
                 print("Dicas:")
                 print("")
                 if band>0:
@@ -310,21 +339,23 @@ while final==0:       #iniciando o jogo
                     print("População do país: {0} habitantes".format(populacaozinha))
                 if cont>0:
                     print("Continente: {0}".format(continentizinho))
-                faltam=20-tentativas 
+            faltam=20-tentativas 
 
 
 
         if chute == sorteado:          #ACERTOU
             tentativas+=1
-            print("")
+            print("","\n","","\n","","\n","","\n","","\n","","\n","","\n")
             print("***Parabéns meu consagrado, parece que temos um Sherlock Holmes aqui!!!***")
+            print("","\n","","\n","","\n")
             print("você acertou após {0} tentativas".format(tentativas))
             acerto+=1
-            print("")
+            print("","\n","","\n","","\n","","\n")
             b=input("Quer jogar novamente?[s|n]")
             if b=="n":
                 final+=1
                 tentativas=20
+                print("","\n","","\n","","\n","","\n","","\n","","\n")
                 print("Até a próxima!!!!")
 
             if b =="s":
@@ -334,23 +365,23 @@ while final==0:       #iniciando o jogo
 
 
         if chute=="desisto":    
-            print("")                               #desisto
+            print("","\n","","\n","","\n")                         #desisto
             desistir=input("tem certeza que vai desistir??[s|n]")
             if desistir == "s":
                 tentativas=20
                 acerto+=1
-                print("")
+                print("","\n","","\n","","\n","","\n")
                 print("Não aguentou a pressão??? O país era {0}".format(sorteado))
+                print("","\n","","\n","","\n","","\n")
                 novamente=input("Quer jogar novamente?[s|n]")
                 if novamente=="s":
                     tentativa=20
                 if novamente=="n":
-                    print("")
+                    print("","\n","","\n","","\n","","\n","","\n")
                     print("Até a próxima!!!!")
                     final+=1
             if desistir=="n":
-                print("")
-                print("Você ainda tem {0} tentativa(s)".format(faltam))
+                print("","\n","","\n","","\n")
 
 
         if tentativas>=20 and acerto ==0:               #ERROU
@@ -365,11 +396,66 @@ while final==0:       #iniciando o jogo
                 print("")
                 print("Até a próxima!!!!")
                 final+=1
-                    
 
-        if chute not in l and chute != "dica" and chute != "desisto" and chute != "lista":          #desconhecido
-            print("")
+
+        if chute =="inventário":
+            if pop > 0 or area > 0 or cont > 0 or band > 0 or cap > 0:      #printando dicas no inventário
+                print("inventário:")
+                print("")
+                print("Dicas:")
+                print("")
+                if band>0:
+                    print("Cores da bandeira: {0}".format(corzinha))
+                if cap>0:
+                    print("Letras da capital: {0}".format(letrinha))
+                if area>0:
+                    print("Área do país: {0} km2".format(areazinha))
+                if pop>0:
+                    print("População do país: {0} habitantes".format(populacaozinha))
+                if cont>0:
+                    print("Continente: {0}".format(continentizinho))
+                faltam=20-tentativas          
+            y=0                                                     #DISTÂNCIA E CORES
+            print("","\n")
+            print("Distâncias:")
+            print("","\n")
+
+            while y < len(lista):
+                if lista [y][0] =="brasil":                             #Brasillllllll
+                    if lista[y][1] <=500:
+                        print((bcolors.CYAN+"{0} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 500 and lista[y][1] <= 1000:
+                        print((bcolors.GREEN+"{0} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1],lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 1000 and lista[y][1] <= 2000:
+                        print((bcolors.YELLOW+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 2000 and lista[y][1] <= 5000:
+                        print((bcolors.MAGENTA+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 5000 and lista[y][1] <= 10000:
+                        print((bcolors.RED+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    if lista[y][1] > 10000:
+                        print((bcolors.GRAY+"{0:.3f} Km ->"+bcolors.YELLOWBR+" {1}"+bcolors.BLUE+"{2}"+bcolors.GREENBR+"{3}"+bcolors.RESET).format(lista[y][1]/1000,lista[y][0][0:2],lista[y][0][2:4],lista[y][0][4:6]))
+                    
+                    
+                if lista [y][0]!= "brasil":                            #Não Brasillllllll
+                    if lista[y][1] <=500:
+                        print((bcolors.CYAN+'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
+                    if lista[y][1] > 500 and lista[y][1] <= 1000:
+                        print((bcolors.GREEN +'{0} Km -> {1}'+bcolors.RESET).format(lista[y][1],lista[y][0]))
+                    if lista[y][1] > 1000 and lista[y][1] <= 2000:
+                        print((bcolors.YELLOW +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                    if lista[y][1] > 2000 and lista[y][1] <= 5000:
+                        print((bcolors.MAGENTA +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                    if lista[y][1] > 5000 and lista[y][1] <= 10000:
+                        print((bcolors.RED +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                    if lista[y][1] > 10000:
+                        print((bcolors.GRAY +'{0:.3f} Km -> {1}'+bcolors.RESET).format(lista[y][1]/1000,lista[y][0]))
+                    
+                y +=1
+
+        if chute not in l and chute != "dica" and chute != "desisto" and chute != "lista" and chute!= "inventário":          #desconhecido
+            print("","\n","","\n","","\n","","\n","","\n")
             print("País não reconhecido, tente novamente")
+            print("","\n","","\n","","\n")
 
 final=0
     
